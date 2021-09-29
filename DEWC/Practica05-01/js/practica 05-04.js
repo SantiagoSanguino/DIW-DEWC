@@ -36,13 +36,28 @@ window.onload=inicio;
 		document.formulario.binario.value=bin;
 		
 		//Calcular octal
+		//octalAux=dec;
 		octalStr=dec;
-		oct=parseInt(octalStr,8);
+		oct=parseInt(octalStr,10);
+		oct=oct.toString(8);/**/
+		/*while(octalAux>=8){
+			oct+=octalAux%8;
+			octalAux=octalAux/8;
+			
+			if(octalAux<8){
+				oct+=octalAux;
+				octalAux=0;
+			}
+		}
+		oct="0"+oct.toString(8);/**/
+		
 		document.formulario.octal.value=oct;
 		
 		//Calcular hexadecimal
-		hexStr=dec;
-		hex=parseInt(hexStr,16);
+		//hexAux=dec;
+		hexStr=dec
+		hex=parseInt(hexStr,10);
+		hex=hex.toString(16)/**/
 		document.formulario.hexadecimal.value=hex;
 		/**/
 	}
