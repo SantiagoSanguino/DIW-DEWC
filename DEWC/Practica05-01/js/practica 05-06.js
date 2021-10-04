@@ -21,6 +21,9 @@ window.onload=inicio;
 					repetida+=1;
 					esrepetida=true;
 					esencontrada=true;
+				}else{//Correccion para evitar que sino esta continua cuente
+					repetida=0;
+					esencontrada=false;
 				}
 				if(repetida==vocsub.length&&esencontrada)
 					essubcadena=true;
