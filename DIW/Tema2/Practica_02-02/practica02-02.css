@@ -1,0 +1,189 @@
+html {
+	font-family: Tahoma;
+	color: #9B9EAC;
+	background-color: #DCF0DA;
+}
+	@media (max-width:400px){
+		html{ 
+			font-size: 10pt;
+		}
+	}
+	@media (min-width:401px) and (max-width:800px){
+		html {
+			font-size: 11pt;
+		}
+	}
+	@media (min-width:801px) and (max-width:1200px){
+		html {
+			font-size: 12pt;
+		}
+	}
+	@media (width > 1201px){
+		html {
+			font-size: 13pt;
+		}
+	}
+
+h1,h2,h3,h4,h5,h6 {
+	font-family: Arial;
+	color: #5D1B30;
+}
+
+.celdasX {
+	background-color: #275211;
+	font-family: Comic Sans MS;
+	color: #212B5F;
+}
+.celdasSinX {
+	background-color: #C9C988;
+}
+	@media (max-height:500px){
+		td {
+			margin: 9pt;
+		}
+	}
+	@media (min-height:501px) and (max-height:1000px){
+		td {
+			margin: 11pt;
+		}
+	}
+	@media (height > 1000px){
+		td {
+			margin: 12pt;
+		}
+	}
+	/*Creo que esta aplicado incorrectamente esta clase en el documento html*/
+div.cuerpo {
+	font-family: Calibri;
+	font-style: italic;
+	color: #324EED;
+	background-color: #4D8365;
+	width: 600px;
+	height: 200px;
+}
+	@media (max-height:450px){
+		div.cuerpo {
+			font-size: 9pt;
+			line-height: 160%;
+		}
+	}
+	@media (min-height:451px) and (max-height:900px){
+		div.cuerpo {
+			font-size: 10pt;
+			line-height: 160%;
+		}
+	}
+	@media (min-height:900px){
+		div.cuerpo {
+			font-size: 11pt;
+			line-height: 160%;
+		}
+	}
+	
+p {
+	font-family: Verdana;
+	font-weight: bold;
+	color: #C1C9C9;
+	background-color: #BEC079;
+}
+	@media (max-height:475px){
+		p {
+			font-size: 7pt;
+			line-height: 200%;
+		}
+	}
+	@media (min-height:476px) and (max-height:950px){
+		p {
+			font-size: 8pt;
+			line-height: 200%;
+		}
+	}
+	@media (min-height:951px) and (max-height:1335px){
+		p {
+			font-size: 9pt;
+			line-height: 200%;
+		}
+	}
+	@media (height > 1335px){
+		p {
+			font-size: 10pt;
+			line-height: 200%;
+		}
+	}
+
+span {
+	font-family: Times New Romas;
+	color: #662032;
+	background-color: #B5B4D4;
+}
+	@media (max-height:375px){
+		span {
+			font-size: 8pt;
+			line-height: 136%;
+		}
+	}
+	@media (min-height:376px) and (max-height:750px){
+		span {
+			font-size: 9pt;
+			line-height: 136%;
+		}
+	}
+	@media (min-height:751px) and (max-height:1150px){
+		span {
+			font-size: 11pt;
+			line-height: 136%;
+		}
+	}
+	@media (height > 1150px){
+		span {
+			font-size: 13pt;
+			line-height: 136%;
+		}
+	}
+	
+ol {
+	font-family: Georgia;
+	/*font-family: Century;*/
+	color: #0F4B52;
+	
+}
+	@media (max-height:600px){
+		ol {
+			font-size: 7pt;
+		}
+	}
+	@media (min-height:601px) and (max-height:1200px){
+		ol {
+			font-size: 9pt;
+		}
+	}
+	@media (min-height:1200px){
+		ol {
+			font-size: 11pt;
+		}
+	}
+	
+table {
+	font-family: Coimbra;
+	color: #406F32;
+}
+	@media (max-height:525px){
+		ol {
+			font-size: 9pt;
+		}
+	}
+	@media (min-height:526px) and (max-height:1050px){
+		ol {
+			font-size: 10pt;
+		}
+	}
+	@media (min-height:1050px){
+		ol {
+			font-size: 11pt;
+		}
+	}
+
+img {
+	height: 50px;
+	width: 50px;
+}
