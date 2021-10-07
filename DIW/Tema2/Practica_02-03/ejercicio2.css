@@ -1,0 +1,42 @@
+	@font-face {
+		font-family: Coldbringer;
+		src: url("../Coldbringer.ttf") format("opentype");
+	}
+#campanas > div {
+	font-family: Verdana;
+	text-transform: Uppercase;
+}
+#veleta p ~ p{
+	font-family: Coldbringer;
+}
+	@media (max-width:500px) {
+		#campanas > div {
+			font-size: 9pt;
+			color: #8D4925;
+		}
+		#veleta p ~ p{
+			font-size: 10pt;
+			color: #B03648;
+			src: url("../Coldbringer.ttf") format("opentype");
+		}
+	}
+	@media (min-width:500px) and (max-width:1000px) {
+		#campanas > div {
+			font-size: 10pt;
+			color: #96989A;
+		}
+		#veleta p ~ p{
+			font-size: 11pt;
+			color: #FFC0CB;
+		}
+	}
+	@media (min-width:1000px) {
+		#campanas > div {
+			font-size: 11pt;
+			color: #E4717A;
+		}
+		#veleta p ~ p{
+			font-size: 12pt;
+			color: #D85E20;
+		}
+	}
