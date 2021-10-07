@@ -1,0 +1,36 @@
+h3+[title] {
+	font-family: Arial;
+	color: #948B0E;
+}
+[class*="historia"] {
+	font-family: Century;
+	color: #CBE68D;
+}
+[class*="cantabra"] {
+	font-family: Corbel;
+	color: #54B3B6;
+}
+	@media (max-width:450px) {
+		[class*="historia"] {
+			font-size:9pt;
+		}
+		[class*="cantabra"] {
+			font-size:10pt;
+		}
+	}
+	@media (min-width:450px) and (max-width:900px) {
+		[class*="historia"] {
+			font-size:9pt;
+		}
+		[class*="cantabra"] {
+			font-size:10pt;
+		}
+	}
+	@media (min-width:900px) {
+		[class*="historia"] {
+			font-size:9pt;
+		}
+		[class*="cantabra"] {
+			font-size:10pt;
+		}
+	}
