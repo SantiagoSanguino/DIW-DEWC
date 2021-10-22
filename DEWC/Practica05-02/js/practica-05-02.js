@@ -252,7 +252,7 @@ window.onload=iniciador;
 			esNif=false;
 			numMensaje=0;
 		}
-		alert(arrayMensajes[numMensaje])
+		alert(arrayMensajes[numMensaje]);
 		return esNif;
 	}
 	function esNombre(){
