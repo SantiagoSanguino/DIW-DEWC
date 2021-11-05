@@ -1,7 +1,26 @@
 window.onload=iniciar;
 	
 	function iniciar() {
-		document.primero.onsubmit=esNifCif;
+		document.primero.onsubmit=enviado;
+		document.primero.codban.onkeypress=solonumero;
+		document.primero.numsuc.onkeypress=solonumero;
+		document.primero.numcue.onkeypress=solonumero;
+	}
+	function enviado() {
+		esNifCif();
+		codigosControl();
+		//calculoIBANEspanya();
+		comprobarIBAN();
+	}
+	function solonumero(evento) {
+		let eventos=evento||window.event;
+		let enviar=true;
+		let caracter=String.fromCharCode(eventos.charCode);
+		if(caracter < "0" || caracter > "9" || caracter==32){
+			enviar=false;
+			//alert("No se permiten caracteres distintos de numeros");
+		}
+		return enviar;
 	}
 	function esNif(evento) {
 		/*
@@ -350,10 +369,123 @@ window.onload=iniciar;
 			return false;
 		}
 	}
-	
+	// file:///Z:/DWEC/Practica05-03/practica-5-03.html
 	function codigosControl() {
-		let codBanco;
-		let numSucursal;
-		let numCuenta;
+		let codBanc=document.primero.codban.value+"";
+		let numSucu=document.primero.numsuc.value+"";
+		let numCuent=document.primero.numcue.value+"";
+		let numero1=((codBanc.charAt(0)*4)+(codBanc.charAt(1)*8)+(codBanc.charAt(2)*5)+(codBanc.charAt(3)*10));
+		let numero2=((numSucu.charAt(0)*9)+(numSucu.charAt(1)*7)+(numSucu.charAt(2)*3)+(numSucu.charAt(3)*6));
+		//resto1=(numero1+numero2)%11;
+		let modulo11_1=11-((numero1+numero2)%11);
+		if(modulo11_1==10){modulo11_1=1;
+		}else if(modulo11_1==11){modulo11_1=0;}
+		let numero3=((numCuent.charAt(0)*1)+(numCuent.charAt(1)*2)+(numCuent.charAt(2)*4)+
+		(numCuent.charAt(3)*8)+(numCuent.charAt(4)*5)+(numCuent.charAt(5)*10)+(numCuent.charAt(6)*9)+
+		(numCuent.charAt(7)*7)+(numCuent.charAt(8)*3)+(numCuent.charAt(9)*6));
+		//resto2=numero3%11;
+		let modulo11_2=11-(numero3%11);
+		if(modulo11_2==10){modulo11_2=1;
+		}else if(modulo11_2==11){modulo11_2=0;}
+		alert(modulo11_1+'-'+modulo11_2);
+	}
+	
+	function calculoIBANEspanya() {
+		let IBAN=document.primero.iban.value+"";
+		let codigoCuenta="";
+		let pais=(IBAN.charAt(0))+(IBAN.charAt(1));
+		if(pais=="ES") {
+			pais=1428+(IBAN.charAt(2))+(IBAN.charAt(3));
+			for(let i=4;i<IBAN.length;i++){
+				codigoCuenta+=IBAN.charAt(i)+"";
+			}
+			codigoCuenta+=pais;
+		}
+		//resto3=codigoCuenta%97;
+		let codigoControl=98-(codigoCuenta%97);
+		if(codigoControl<10){
+			codigoControl=""+0+codigoControl;
+		}
+		alert(codigoControl);
 		
+	}
+	function comprobarIBAN() {
+		let IBAN=document.primero.iban.value+"";
+		let codigoCuenta="";
+		let pais="";
+		let letra1=IBAN.charAt(0); let letra2=IBAN.charAt(1);
+		let espais1=false; let espais2=false;
+		let arrayletras=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T"
+		,"U","V","W","X","Y","Z"];
+		let arrayvalor=["10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"
+		,"26","27","28","29","30","31","32","33","34","35"];
+		/* Array para saber la longitud de los IBAN de cada pais */
+		let arraypais=["DE","AT","BE","BG","CY","HR","DK","SK","SI","ES","EE","FI","FR","GR","HU","IE"
+		,"IT","LV","LT","LU","MT","NL","PL","PT","GB","CZ","RO","SE","IS","NO","CH","SM","MC","LI"];
+		let arraycaract=[22,20,16,22,28,21,18,24,19,24,20,18,27,27,28,22,27,21,20,20,31,18,28,25,22,24,24,24,26,15,21,27,27,21];
+		if((letra1>="A"&&letra1<="Z")&&(letra2>="A"&&letra2<="Z")) {
+			i=0;
+			let espais=false;
+			pais=letra1+letra2;
+			let sizearray=arraypais.length;
+			//alert(arraypais.length+'_'+arraycaract.length+'~'+IBAN.length);
+			alert(pais);
+			while(!espais&&i<sizearray){
+				if(arraypais[i]==pais){
+					espais=true;
+					longitudIBAN=arraycaract[i];
+				}
+				i++;
+			}
+			if(espais&&IBAN.length==longitudIBAN){
+				pais="";
+				/*i=0;
+				while(!espais1&&i<35){
+					if(!espais1&&letra1==arrayletras[i]){
+						pais+=arrayvalor[i];
+						espais1=true;
+					}
+					i++;
+				}
+				i=0;
+				while(!espais2&&i<35){
+					if(!espais2&&letra2==arrayletras[i]){
+						pais+=arrayvalor[i];
+						espais2=true;
+					}
+					i++;
+				}*/
+				if(espais1&&espais2){
+					pais=""+pais+(IBAN.charAt(2))+(IBAN.charAt(3));
+					/*for(i=4;i<IBAN.length;i++){
+						if(IBAN.charAt(i)<"A"||IBAN.charAt(i)>"Z"){
+							codigoCuenta+=IBAN.charAt(i)+"";
+						}else {
+							let j=0;
+							while(j<arrayletras.length) {
+								if(arrayletras[j]==IBAN.charAt(i)) {
+									codigoCuenta+=arrayvalor[j]+"";
+								}
+								j++;
+							}
+						}
+					}*/
+					for(i=4;i<IBAN.length;i++) {
+						codigoCuenta+=IBAN.charAt(i)+"";
+					}
+					codigoCuenta+=pais;
+					for(i=0;i<arrayletras.length;i++) {
+						codigoCuenta=codigoCuenta.replaceAll(arrayletras[i],arrayvalor[i]);
+					}
+					//resto3=codigoCuenta%97;
+					let codigoControl=codigoCuenta%97;
+					if(codigoControl==1){
+						alert('');
+					}
+					
+				}
+			}else {
+				alert('El tamaño no coincide con el pais');
+			}
+		}
 	}
