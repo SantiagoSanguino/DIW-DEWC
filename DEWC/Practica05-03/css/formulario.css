@@ -1,0 +1,14 @@
+body {
+	background-color:blue;
+	color:white;
+	font-family:calibri;
+	font-size:12pt;
+	line-height:1.75em;
+	margin:30px;
+}
+
+input[type="text"]   {
+	position:relative;
+}
+
+

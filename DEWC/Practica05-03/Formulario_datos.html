@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="author" content="Santiago Sanguino" />
+		<meta charset="utf-8" />
+		<title>Formulario de recogida de datos de las empresas </title>
+		<link href="css/formulario.css" rel="stylesheet" type="text/css" />
+		
+		<style type="text/css">
+
+		</style>
+		<script src="js/practica-05-03.js" type="text/javascript">
+
+		</script>
+	</head>
+	<body>
+		<header>
+			<h1>Formulario de recogida de datos de las empresas</h1>
+		</header>
+		<nav>
+		
+		</nav>
+		<main>
+			<section>
+				<article>
+					<div>	
+						<form name="primero">
+							<div>
+								<label for="nombrerazon">Razón Social/Apellidos y Nombre </label>
+									<input type="text" name="nombrerazon" /> <br />
+								<label for="codemp">Código de la empresa </label>
+									<input type="text" name="codemp" /> <br />
+								<label for="cifnifemp">CIF/NIF de la empresa </label>
+									<input type="text" name="cifnifemp" /> <br />
+								<fieldset>
+									<legend>Tipo de persona</legend>
+									<input type="radio" value="juridica" name="tipoper" /> Jurídoca
+									<input type="radio" value="fisica" name="tipoper" /> Física </br>
+								</fieldset>
+								<fieldset>
+									<legend>Domicilio Social/Particular</legend>
+									<label for="direccion">Dirección </label>
+										<input type="text" name="direccion" />
+									<label for="telefono">Telefono </label>
+										<input type="text" name="telefono" /> <br />
+									<label for="localidad">Localidad </label>
+										<input type="text" name="localidad" />
+									<label for="cp">Código Postal </label>
+										<input type="text" name="cp" /> <br />
+									<label for="provincia">Provincia </label>
+										<input type="text" name="provincia" /> <br />
+								</fieldset>
+								<fieldset>
+									<legend>Datos bancarios</legend>
+									<label for="codbanco">Código del banco </label>
+										<input type="text" name="codbanco" /> <br />
+									<label for="codofic">Código oficina </label>
+										<input type="text" name="codofic" /> <br />
+									<label for="codcontrol">Código control </label>
+										<input type="text" name="codcontrol" /> <br />
+									<label for="numcuenta">Número de cuenta </label>
+										<input type="text" name="numcuenta" /> <br />
+									<label for="iban">IBAN </label>
+										<input type="text" name="iban" /> <br />
+								</fieldset>
+							</div>
+							<br />
+							<div>
+								<label for="fechaconstempresa">Fecha de constitucion de la empresa </label>
+									<input type="text" name="fechaconstempresa" /> <br />
+								<label for="numtrabempresa">Número de Trabajadores de la Empresa </label>
+									<input type="text" name="numtrabempresa" /> <br />
+								<label for="numfabricempresa">Número de Fabricas de la Empresa </label>
+									<input type="text" name="numfabricempresa" /> <br />
+								<label for="comunidadesfabricas">Comunidades en las que hay fabricas </label>
+									<select id="comunidadesfabricas" name="comunidadesfabricas" size="5" multiple>
+										<option value="Asturias">Asturias</option>
+										<option value="Andalucia">Andalucia</option>
+										<option value="Galicia">Galicia</option>
+										<option value="Cantabria">Cantabria</option>
+										<option value="Pais vasco">Pais vasco</option>
+										<option value="Castilla y leon">Castilla y leon</option>
+										<option value="Castilla la mancha">Castilla la mancha</option>
+										<option value="Canarias">Canarias</option>
+									</select>
+								<fieldset>
+									<legend>Sector/es Económicos</legend>
+									<input type="checkbox" value="alimentacion" name="alimentacion" /> Alimentación
+									<input type="checkbox"  value="informatica" name="informatica" /> Informática
+									<input type="checkbox" value="comercio" name="comercio" /> Comercio
+									<input type="checkbox" value="construccion" name="construccion" /> Construccion
+									<input type="checkbox" value="hosteleria" name="hosteleria" /> Hosteleria
+									<input type="checkbox" value="alimentacion" name="alimentacion" /> Alimentación
+									<input type="checkbox" value="alimentacion" name="alimentacion" /> Alimentación
+									<input type="checkbox" value="automocion" name="automocion" /> Automoción
+									<input type="checkbox" value="calzado" name="calzado" /> Calzado
+									<input type="checkbox" value="turismo" name="turismo" /> Turismo
+									<input type="checkbox" value="agricultura" name="agricultura" /> Agricultura
+									<input type="checkbox" value="ganaderia" name="ganaderia" /> Ganaderia
+									<input type="checkbox" value="otros" name="otros" /> Otros
+								</fieldset>
+								<fieldset>
+									<legend>Tipo de Empresa</legend>
+									<input type="radio" value="sociedadanonima" name="tipoempresa" /> S.A.
+									<input type="radio" value="sociedadlimitada" name="tipoempresa" /> S.I. 
+									<input type="radio" value="sociedadanonimalimitada" name="tipoempresa" /> S.A.I.
+									<input type="radio" value="cooperativa" name="tipoempresa" /> Cooperativa 
+									<input type="radio" value="autonomo" name="tipoempresa" /> Autónomo
+									<input type="radio" value="otraempresa" name="tipoempresa" /> Otra 
+								</fieldset>
+							</div>
+							<br />
+							<input type="submit" value="Validar" />
+							<input type="reset" value="Limpiar" />
+						</form>
+					</div>
+				</article>
+			</section>
+		</main>
+		<footer>
+		
+		</footer>
+		<aside>
+		</aside>		
+	</body>
+</html>

@@ -480,7 +480,7 @@ window.onload=iniciar;
 					//resto3=codigoCuenta%97;
 					let codigoControl=codigoCuenta%97;
 					if(codigoControl==1){
-						alert('');
+						alert('Caracter de control valido valido');
 					}
 					
 				}
