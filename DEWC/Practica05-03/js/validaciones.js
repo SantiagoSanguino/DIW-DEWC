@@ -2,13 +2,21 @@ window.onload=iniciar;
 	
 	function iniciar() {
 		document.primero.onsubmit=enviado;
-		document.primero.codban.onkeypress=solonumero;
-		document.primero.numsuc.onkeypress=solonumero;
-		document.primero.numcue.onkeypress=solonumero;
+		document.primero.codbanco.onkeypress=solonumero;
+		document.primero.codoficina.onkeypress=solonumero;
+		document.primero.codcontrol.onkeypress=solonumero;
+		document.primero.numcuenta.onkeypress=solonumero;
+		document.primero.telefono.onkeypress=solonumero;
+		document.primero.cp.onkeypress=solonumero;
+		document.primero.cp.onkeyup=selectprovincia;
 	}
 	function enviado() {
 		comprobarNombre();
+		comprobarCodEmp();
 		esNifCif();
+		comprobarDireccion();
+		comprobarlocalidad();
+		comprobarTelefono();
 		codigosControl();
 		//calculoIBANEspanya();
 		comprobarIBAN();
@@ -185,25 +193,25 @@ window.onload=iniciar;
 					let sumaDigi=sumaImp+sumaPar;
 					let control=sumaDigi%10;
 					control=10-control;
-						if(control==10){
-							control=0;
-						}
-						if(control>=0&&control<=9){
-							if(caracterControl[control]==cif[length-1]){
-								numMensaje=1;
-							}else {
-								esCif=false;
-								numMensaje=2;
-							}
-						}else if(control>10){
-							alert("El caracter de control excede el limite "+control);
-							esCif=false;
-							numMensaje=0;
+					if(control==10){
+						control=0;
+					}
+					if(control>=0&&control<=9){
+						if(caracterControl[control]==cif[length-1]){
+							numMensaje=1;
 						}else {
-							alert("El caracter de control esta por debajo del limite "+control);
 							esCif=false;
-							numMensaje=0;
+							numMensaje=2;
 						}
+					}else if(control>10){
+						alert("El caracter de control excede el limite "+control);
+						esCif=false;
+						numMensaje=0;
+					}else {
+						alert("El caracter de control esta por debajo del limite "+control);
+						esCif=false;
+						numMensaje=0;
+					}
 				}
 			}else {
 				esCif=false;
@@ -218,11 +226,9 @@ window.onload=iniciar;
 	}
 	
 	function esNifCif(evento) {
-		
 		let esNif=true;
 		let esCif=true;
 		let numMensaje=0;
-		
 		/*
 		C1 Se ha introducido un cif correcto. 
 		C2 Se ha introducido un cif erróneo.  El carácter de control  es erróneo. 
@@ -395,14 +401,12 @@ window.onload=iniciar;
 		let numCuent=document.primero.numcuenta.value+"";
 		let numero1=((codBanc.charAt(0)*4)+(codBanc.charAt(1)*8)+(codBanc.charAt(2)*5)+(codBanc.charAt(3)*10));
 		let numero2=((numSucu.charAt(0)*9)+(numSucu.charAt(1)*7)+(numSucu.charAt(2)*3)+(numSucu.charAt(3)*6));
-		//resto1=(numero1+numero2)%11;
 		let modulo11_1=11-((numero1+numero2)%11);
 		if(modulo11_1==10){modulo11_1=1;
 		}else if(modulo11_1==11){modulo11_1=0;}
 		let numero3=((numCuent.charAt(0)*1)+(numCuent.charAt(1)*2)+(numCuent.charAt(2)*4)+
 		(numCuent.charAt(3)*8)+(numCuent.charAt(4)*5)+(numCuent.charAt(5)*10)+(numCuent.charAt(6)*9)+
 		(numCuent.charAt(7)*7)+(numCuent.charAt(8)*3)+(numCuent.charAt(9)*6));
-		//resto2=numero3%11;
 		let modulo11_2=11-(numero3%11);
 		if(modulo11_2==10){modulo11_2=1;
 		}else if(modulo11_2==11){modulo11_2=0;}
@@ -514,8 +518,6 @@ window.onload=iniciar;
 		let esnombre=true;
 		let caracteresAdic="ºª-";
 		let letrasAdic="áéúíóÁÉÚÍÓñÑ";
-		//alert(nombrelong);
-		
 		if(nombrelong>=2){
 			let caracter=nombre.charAt(0);
 			if((caracter < "a" || caracter > "z")&&(caracter < "A" || caracter > "Z")){
@@ -539,12 +541,166 @@ window.onload=iniciar;
 					esnombre=false;
 				}
 			}
-			/*if(esnombre)
-				alert("Es un nombre "+nombre);
-			else
-				alert("No es un nombre");/**/
 		}else {
 			esnombre=false;
 		}
 		return esnombre;
 	}
+	function comprobarCodEmp() {
+		let codigoEmp=document.primero.codemp.value;
+		let codigolong=codigoEmp.length;
+		let escod=true;
+		let caractAdic="áéúíóÁÉÚÍÓñÑ0123456789";
+		if(codigolong>4&&codigolong<11){
+			let caracter;
+			let i=0;
+			while(escod&&i<codigolong){
+				caracter=codigoEmp.charAt(i);
+				if((caracter<"a"||caracter>"z")&&(caracter<"A"||caracter>"Z")&&(caracter<"0"||caracter>"9")){
+					if(!caractAdic.includes(caracter)){
+						escod=false;
+					}
+				}
+				i++;
+			}
+		}else {
+			escod=false;
+		}
+		return escod;
+	}
+	function comprobarDireccion() {
+		let direc=document.primero.direccion.value;
+		let direclong=direc.length;
+		let esdirec=true;
+		let caracteresAdic="ºª-/.0123456789";
+		let letrasAdic="áéúíóÁÉÚÍÓñÑ";
+		if(direclong>=2){
+			let caracter=direc.charAt(0);
+			if((caracter < "a" || caracter > "z")&&(caracter < "A" || caracter > "Z")){
+				if(!letrasAdic.includes(caracter))
+					esdirec=false;
+			}
+			
+			let i=1;
+			while(esdirec&&i<direclong-1){
+				caracter=direc.charAt(i);
+				if((caracter<"a"||caracter>"z")&&(caracter<"A"||caracter>"Z")&&(caracter<"0"||caracter>"9")){
+					if(!letrasAdic.includes(caracter)&&!caracteresAdic.includes(caracter)){
+						esdirec=false;
+					}
+				}
+				i++;
+			}
+			caracteresAdic="0123456789";
+			caracter=direc.charAt(direclong-1);
+			if((caracter < "a" || caracter > "z")&&(caracter < "A" || caracter > "Z")){
+				if(!letrasAdic.includes(caracter)&&!caracteresAdic.includes(caracter)){
+					esdirec=false;
+				}
+			}
+		}else {
+			esdirec=false;
+		}
+		return esdirec;
+	}
+	function selectprovincia(evento) {
+		let eventos=evento||window.event;
+		var elemento=eventos.target;
+		var arrayProvincia=[null,"Araba/Álava","Albacete","Alicante/Alacant","Almería","Ávila","Badajoz",
+		"Baleares","Barcelona","Burgos","Cáceres","Cádiz","Castellón/Castelló","Ciudad Real","Córdoba",
+		"A Coruña","Cuenca","Gerona","Granada","Guadalajara","Guipúzcoa","Huelva","Huesca","Jaén",
+		"León","Lérida","La Rioja","Lugo","Madrid","Málaga","Murcia","Navarra","Orense","Asturias",
+		"Palencia","Las Palmas","Pontevedra","Salamanca","Santa Cruz de Tenerife","Cantabria",
+		"Segovia","Sevilla","Soria","Tarragona","Teruel","Toledo","Valencia/València","Valladolid",
+		"Vizcaya","Zamora","Zaragoza","Ceuta","Melilla"];
+		let cp=elemento.value;
+		if(cp>=1000&&cp<52999){
+			if(cp<10000){
+				document.primero.provincia.value=arrayProvincia[cp.charAt(0)];
+			}else{
+				document.primero.provincia.value=arrayProvincia[cp.charAt(0)+cp.charAt(1)];
+			}
+		}else{
+			document.primero.provincia.value=null;
+		}
+	}
+	function comprobarlocalidad() {
+		let localidad=document.primero.localidad.value;
+		let localilong=localidad.length;
+		let eslocali=true;
+		let caractAdic="áéúíóÁÉÚÍÓñÑ";
+		if(localilong>=2){
+			let caracter=localidad.charAt(0);
+			if((caracter < "a" || caracter > "z")&&(caracter < "A" || caracter > "Z")){
+				if(!caractAdic.includes(caracter))
+					eslocali=false;
+			}
+			caracter=localidad.charAt(localilong-1);
+			if((caracter < "a" || caracter > "z")&&(caracter < "A" || caracter > "Z")){
+				if(!caractAdic.includes(caracter)){
+					eslocali=false;
+				}
+			}
+			caractAdic+=" ";
+			let i=1;
+			while(eslocali&&i<localilong-1){
+				caracter=localidad.charAt(i);
+				if((caracter<"a"||caracter>"z")&&(caracter<"A"||caracter>"Z")){
+					if(!caractAdic.includes(caracter)){
+						eslocali=false;
+					}
+				}
+				i++;
+			}
+		}else {
+			eslocali=false;
+		}
+		return eslocali;
+	}
+	function comprobarTelefono() {
+		let telefono=document.primero.telefono.value;
+		let teleflong=telefono.length;
+		let estelef=true;
+		let inicio="679";
+		if(teleflong==9){
+			let caracter=telefono.charAt(0);
+			if(!inicio.includes(caracter)){
+				estelef=false;
+			}
+			let i=1;
+			while(estelef&&i<teleflong){
+				caracter=telefono.charAt(i);
+				if((caracter<"0"||caracter>"9")){
+					estelef=false;
+				}
+				i++;
+			}
+		}else {
+			estelef=false;
+		}
+		return estelef;
+	}
+	function comprobarFax() {
+		let fax=document.primero.fax.value;
+		let faxlong=fax.length;
+		let esfax=true;
+		let inicio="9";
+		if(faxlong==9){
+			let caracter=fax.charAt(0);
+			if(!inicio.includes(caracter)){
+				esfax=false;
+			}
+			let i=1;
+			while(esfax&&i<faxlong){
+				caracter=fax.charAt(i);
+				if((caracter<"0"||caracter>"9")){
+					esfax=false;
+				}
+				i++;
+			}
+		}else {
+			esfax=false;
+		}
+		return esfax;
+	}
+	
