@@ -7,6 +7,7 @@ window.onload=iniciar;
 		document.primero.numcue.onkeypress=solonumero;
 	}
 	function enviado() {
+		comprobarNombre();
 		esNifCif();
 		codigosControl();
 		//calculoIBANEspanya();
@@ -21,6 +22,23 @@ window.onload=iniciar;
 			//alert("No se permiten caracteres distintos de numeros");
 		}
 		return enviar;
+	}
+	function solonletras(evento) {
+		let eventos=evento||window.event;
+		let enviar=true;
+		let letrasespeciales="ÁÉÍÓÚÑñáéúíóü ";
+		
+		let caracter=String.fromCharCode(eventos.charCode);
+		if((caracter < "a" || caracter > "z")&&(caracter < "A" || caracter > "Z")){
+			if(!letrasespeciales.includes(caracter)){
+				enviar=false;
+			}
+		}
+		if(enviar) {
+			return enviar;
+		}else {
+			return enviar;
+		}
 	}
 	function esNif(evento) {
 		/*
@@ -371,9 +389,10 @@ window.onload=iniciar;
 	}
 	// file:///Z:/DWEC/Practica05-03/practica-5-03.html
 	function codigosControl() {
-		let codBanc=document.primero.codban.value+"";
-		let numSucu=document.primero.numsuc.value+"";
-		let numCuent=document.primero.numcue.value+"";
+		let codBanc=document.primero.codbanco.value+"";
+		let numSucu=document.primero.codoficina.value+"";
+		//let codContr=document.primero.codcontrol.value+"";
+		let numCuent=document.primero.numcuenta.value+"";
 		let numero1=((codBanc.charAt(0)*4)+(codBanc.charAt(1)*8)+(codBanc.charAt(2)*5)+(codBanc.charAt(3)*10));
 		let numero2=((numSucu.charAt(0)*9)+(numSucu.charAt(1)*7)+(numSucu.charAt(2)*3)+(numSucu.charAt(3)*6));
 		//resto1=(numero1+numero2)%11;
@@ -488,4 +507,44 @@ window.onload=iniciar;
 				alert('El tamaño no coincide con el pais');
 			}
 		}
+	}
+	function comprobarNombre() {
+		let nombre=document.primero.nombrerazon.value;
+		let nombrelong=nombre.length;
+		let esnombre=true;
+		let caracteresAdic="ºª-";
+		let letrasAdic="áéúíóÁÉÚÍÓñÑ";
+		//alert(nombrelong);
+		
+		if(nombrelong>=2){
+			let caracter=nombre.charAt(0);
+			if((caracter < "a" || caracter > "z")&&(caracter < "A" || caracter > "Z")){
+				if(!letrasAdic.includes(caracter))
+					esnombre=false;
+			}
+			letrasAdic+="0123456789.";
+			let i=1;
+			while(esnombre&&i<nombrelong-1){
+				caracter=nombre.charAt(i);
+				if((caracter<"a"||caracter>"z")&&(caracter<"A"||caracter>"Z")&&(caracter<"0"||caracter>"9")){
+					if(!letrasAdic.includes(caracter)&&!caracteresAdic.includes(caracter)){
+						esnombre=false;
+					}
+				}
+				i++;
+			}
+			caracter=nombre.charAt(nombrelong-1);
+			if((caracter < "a" || caracter > "z")&&(caracter < "A" || caracter > "Z")){
+				if(!letrasAdic.includes(caracter)){
+					esnombre=false;
+				}
+			}
+			/*if(esnombre)
+				alert("Es un nombre "+nombre);
+			else
+				alert("No es un nombre");/**/
+		}else {
+			esnombre=false;
+		}
+		return esnombre;
 	}
