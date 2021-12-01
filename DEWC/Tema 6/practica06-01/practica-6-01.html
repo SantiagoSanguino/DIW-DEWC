@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="author" content="Santiago Sanguino" />
+		<meta charset="utf-8" />
+		<title>Formulario de recogida de datos de las empresas </title>
+		<link href="css/formulario.css" rel="stylesheet" type="text/css" />
+		
+		<style type="text/css">
+			table#coche {border:1px solid;}
+			#coche td {border:1px solid;width: 15%;text-align: center;}
+			#mensaje > table {border: 2px solid violet;}
+			.left {float:left;width:50%;height:20%;}
+			.right {float:right;width:50%;height:20%;}
+			.menu {width:25%;}
+		</style>
+		<script src="js/practica-06-01.js" type="text/javascript">
+
+		</script>
+		<script src="js/validaciones.js" type="text/javascript">
+
+		</script>
+	</head>
+	<body>
+		<header>
+			
+		</header>
+		<nav>
+			
+		</nav>
+		<main>
+			<section>
+				<article>
+					<div>	
+						<form name="formulario">
+							<div>
+								<div class="left">
+									<br /><br /><br /><br /><br />
+								</div>
+								<div class="right">
+									<legend>Usuario</legend><br />
+									<input type="button" value="Registrarse" />
+									<input type="submit" value="Entrar" /><br /><br /><br />
+								</div>
+								<div class="left">
+									<legend>Definiciones</legend><br />
+									<label for="palabra">Palabra </label>
+										<input type="text" name="palabra" id="palabra" /> <br />
+									<label for="concepto">Concepto </label>
+										<input type="text" name="concepto" id="concepto"/> <br />
+										<input type="button" name="addDefinicion" value="Añadir Definición"/><br /><br />
+										<legend> Lista de definiciones</legend>
+									<dl id="definicion">
+										<!--<dt></dt><dd></dd>-->
+									</dl>
+									<br /><br />
+								</div>
+								<div class="right">
+									<legend>Nombre de Localidades</legend><br />
+									<label for="localidad">Localidad </label>
+										<input type="text" name="localidad" /> <br />
+										<input type="button" name="addLocalidad" value="Añadir Localidad"/><br /><br />
+										<legend> Lista de Localidades ordenadas</legend>
+									<ol id="localidades">
+									</ol>
+									<br /><br /><br />
+								</div>
+								<div class="left">
+									<legend>Listado de Coches</legend><br />
+									<label for="marca">Marca </label>
+										<input type="text" name="marca" /> <br />
+									<label for="modelo">Modelo </label>
+										<input type="text" name="modelo" /> <br />
+									<label for="precio">Precio </label>
+										<input type="text" name="precio" /> <br />
+										<input type="button" name="addCoche" value="Añadir Coche"/><br /><br />
+									<table id="coche">
+										<tr>
+											<td>Marca</td>
+											<td>Modelo</td>
+											<td>Precio</td>
+										</tr>
+									</table>
+									<br /><br />
+								</div>
+								<div class="right">
+									<legend>Comunidades Autónomas</legend><br /><br />
+									<select id="comunidades" name="comunidades" class="menu">
+										<option value="Asturias">Asturias</option>
+										<option value="Andalucia">Andalucia</option>
+										<option value="Galicia">Galicia</option>
+										<option value="Cantabria">Cantabria</option>
+										<option value="Pais vasco">Pais vasco</option>
+										<option value="Castilla y leon">Castilla y leon</option>
+										<option value="Castilla la mancha">Castilla la mancha</option>
+										<option value="Canarias">Canarias</option>
+									</select>
+									<label for="provincia">Provincias </label>
+									
+									<select id="provincia" name="provincia" class="menu">
+										
+									</select><br /><br />
+										<legend> Comentarios sobre la comunidad autónoma</legend>
+									<br />
+									<br /><br />
+									<br /><br />
+								</div>
+								<div class="left">
+									<legend>Mensajes</legend><br />
+									<div id="mensaje">
+										
+									</div>
+									<input type="button" name="addMensaje" value="Añadir Mensaje"/><br /><br />
+								</div>
+							</div>
+							<br />
+							<br />
+						</form>
+					</div>
+				</article>
+			</section>
+		</main>
+		<footer>
+		
+		</footer>
+		<aside>
+		</aside>		
+	</body>
+</html>
