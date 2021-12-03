@@ -13,6 +13,7 @@
 			.left {float:left;width:50%;height:20%;}
 			.right {float:right;width:50%;height:20%;}
 			.menu {width:25%;}
+			
 		</style>
 		<script src="js/practica-06-01.js" type="text/javascript">
 
@@ -35,12 +36,32 @@
 						<form name="formulario">
 							<div>
 								<div class="left">
+									<dialog id="regist" name="regist" >
+										<form name="regi" id="regi">
+											<label for="user1">Usuario</label>
+											<input type="text" name="user1" id="user1" /> <br />
+											<label for="pass1">Contraseña</label>
+											<input type="password" name="pass1" id="pass1" /> <br />
+											<input type="submit" value="Resgistrar" name="registrar" id="registrar" /> <br />
+											<input type="button" value="Ocultar" name="ocultarR" id="ocultarR" />
+										</form>
+									</dialog>
+									<dialog id="entrar" name="entrar" >
+										<form name="entr" id="entr">
+											<label for="user2">Usuario</label>
+											<input type="text" name="user2" id="user2" /> <br />
+											<label for="pass2">Password</label>
+											<input type="password" name="pass2" id="pass2" /> <br />
+											<input type="submit" value="Entrar" name="iniciar" id="iniciar" />
+											<input type="button" value="Ocultar" name="ocultarE" id="ocultarE" />
+										</form>
+									</dialog>
 									<br /><br /><br /><br /><br />
 								</div>
 								<div class="right">
 									<legend>Usuario</legend><br />
-									<input type="button" value="Registrarse" />
-									<input type="submit" value="Entrar" /><br /><br /><br />
+									<input type="button" value="registrar" id="registrarse"/>
+									<input type="button" value="Entrar" id="iniciarsesion"/><br /><br /><br />
 								</div>
 								<div class="left">
 									<legend>Definiciones</legend><br />
@@ -48,9 +69,9 @@
 										<input type="text" name="palabra" id="palabra" /> <br />
 									<label for="concepto">Concepto </label>
 										<input type="text" name="concepto" id="concepto"/> <br />
-										<input type="button" name="addDefinicion" value="Añadir Definición"/><br /><br />
+										<input type="button" value="Añadir Definición" name="addDefinicion" id="addDefinicion"/><br /><br />
 										<legend> Lista de definiciones</legend>
-									<dl id="definicion">
+									<dl id="definicion" name="definicion" value="definicion">
 										<!--<dt></dt><dd></dd>-->
 									</dl>
 									<br /><br />
