@@ -8,7 +8,7 @@
 		
 		<style type="text/css">
 			table#coche {border:1px solid;}
-			#coche td {border:1px solid;width: 15%;text-align: center;}
+			#coche td,th {border:1px solid;width: 15%;text-align: center;}
 			#mensaje > table {border: 2px solid violet;}
 			.left {float:left;width:50%;height:20%;}
 			.right {float:right;width:50%;height:20%;}
@@ -38,29 +38,31 @@
 								<div class="left">
 									<dialog id="regist" name="regist" >
 										<form name="regi" id="regi">
+											<legend>Registro</legend>
 											<label for="user1">Usuario</label>
 											<input type="text" name="user1" id="user1" /> <br />
 											<label for="pass1">Contraseña</label>
 											<input type="password" name="pass1" id="pass1" /> <br />
-											<input type="submit" value="Resgistrar" name="registrar" id="registrar" /> <br />
-											<input type="button" value="Ocultar" name="ocultarR" id="ocultarR" />
+											<input type="submit" value="Aceptar" name="registrar" id="registrar" />
+											<input type="button" value="Cancelar" name="ocultarR" id="ocultarR" />
 										</form>
 									</dialog>
 									<dialog id="entrar" name="entrar" >
 										<form name="entr" id="entr">
+											<legend>Entrada</legend>
 											<label for="user2">Usuario</label>
 											<input type="text" name="user2" id="user2" /> <br />
 											<label for="pass2">Password</label>
 											<input type="password" name="pass2" id="pass2" /> <br />
-											<input type="submit" value="Entrar" name="iniciar" id="iniciar" />
-											<input type="button" value="Ocultar" name="ocultarE" id="ocultarE" />
+											<input type="submit" value="Aceptar" name="iniciar" id="iniciar" />
+											<input type="button" value="Cancelar" name="ocultarE" id="ocultarE" />
 										</form>
 									</dialog>
 									<br /><br /><br /><br /><br />
 								</div>
 								<div class="right">
-									<legend>Usuario</legend><br />
-									<input type="button" value="registrar" id="registrarse"/>
+									<legend id="Usuario">Usuario</legend><br />
+									<input type="button" value="Registrar" id="registrarse"/>
 									<input type="button" value="Entrar" id="iniciarsesion"/><br /><br /><br />
 								</div>
 								<div class="left">
@@ -79,8 +81,8 @@
 								<div class="right">
 									<legend>Nombre de Localidades</legend><br />
 									<label for="localidad">Localidad </label>
-										<input type="text" name="localidad" /> <br />
-										<input type="button" name="addLocalidad" value="Añadir Localidad"/><br /><br />
+										<input type="text" name="localidad" id="localidad" /> <br />
+										<input type="button" value="Añadir Localidad" name="addLocalidad" id="addLocalidad"/><br /><br />
 										<legend> Lista de Localidades ordenadas</legend>
 									<ol id="localidades">
 									</ol>
@@ -89,18 +91,23 @@
 								<div class="left">
 									<legend>Listado de Coches</legend><br />
 									<label for="marca">Marca </label>
-										<input type="text" name="marca" /> <br />
+										<input type="text" name="marca" id="marca"/> <br />
 									<label for="modelo">Modelo </label>
-										<input type="text" name="modelo" /> <br />
+										<input type="text" name="modelo" id="modelo" /> <br />
 									<label for="precio">Precio </label>
-										<input type="text" name="precio" /> <br />
-										<input type="button" name="addCoche" value="Añadir Coche"/><br /><br />
+										<input type="text" name="precio" id="precio" /> <br />
+										<input type="button" name="addCoche" id="addCoche" value="Añadir Coche"/><br /><br />
 									<table id="coche">
-										<tr>
-											<td>Marca</td>
-											<td>Modelo</td>
-											<td>Precio</td>
-										</tr>
+										<thead>
+											<tr>
+												<th>Marca</th>
+												<th>Modelo</th>
+												<th>Precio</th>
+											</tr>
+										</thead>
+										<tbody>
+										
+										</tbody>
 									</table>
 									<br /><br />
 								</div>
@@ -131,7 +138,7 @@
 									<div id="mensaje">
 										
 									</div>
-									<input type="button" name="addMensaje" value="Añadir Mensaje"/><br /><br />
+									<input type="button" name="addMensaje" id="addMensaje" value="Añadir Mensaje" /><!-- disabled="true" --> <br /><br />
 								</div>
 							</div>
 							<br />
