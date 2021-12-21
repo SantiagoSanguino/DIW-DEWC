@@ -1,0 +1,13 @@
+div#andando {
+	border: black 1px solid;
+	width: 80px;
+	height: 149px;
+	background-image: url('../imagenes/andando.png');
+	background-repeat:no-repeat;
+	animation: andar 1s steps(7) infinite;
+}
+
+@media (max-width:1200px) {
+	from {background-position: 0 0;}
+	to {background-position: -560px 0;}
+}
