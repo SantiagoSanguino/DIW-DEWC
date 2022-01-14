@@ -7,9 +7,9 @@ function addDefin(evento) {
 		let espalabra=true;		
 		let cont=0;
 		console.log(event.data);
-		while (espalabra&&cont < alldt.length) {
-			if (alldt[cont].textContent==vpalabra) {
-				alldt[cont].after("<dd>"+vconcepto+"</dd>");
+		while (espalabra&&cont < $(alldt).length) {
+			if ($(alldt).eq(cont).text()==vpalabra) {
+				$(alldt).eq(cont).after("<dd>"+vconcepto+"</dd>");
 				espalabra=false;
 			}
 			cont++;
@@ -22,21 +22,19 @@ function addDefin(evento) {
 		}
 	}
 }
-/*
+
 function delDefin() {
-	
-	let definicion=document.getElementById("definicion");
-	let palabra=document.getElementById("palabra");
-	if(palabra!="") {
-		let alldt=definicion.getElementsByTagName("dt");
+	let palabra=$("#palabra").val();
+	if($(vpalabra)!="") {
+		let alldt=$("#definicion>dt");
 		let esencontrado=false;		
 		let cont=0;
-		while (!esencontrado&&cont < alldt.length) {
-			if (alldt[cont].textContent==palabra.value) {
-				/*Quito la definicion*/	/*
+		while (!esencontrado&&cont < $(alldt).length) {
+			if ($(alldt).eq(cont).text()==$(palabra)) {
+				/*Quito la definicion*/	
 				let dt=document.createElement("dt");
-				while(palabra.firstChild) {
-					palabra.removeChild(palabra.firstChild);
+				while($(palabra).firstChild) {
+					$(palabra).removeChild($(palabra).firstChild);
 				}
 				esencontrado=true;
 			}
@@ -44,7 +42,7 @@ function delDefin() {
 		}
 	}
 }
-
+/*
 function addLocal() {
 	let padre=document.getElementById("localidades");
 	let vlocal=document.getElementById("localidad").value.trim();
