@@ -1,32 +1,42 @@
 
-if (document.addEventListener)
-	window.addEventListener("load",inicio)
-else if (document.attachEvent)
+if (document.addEventListener) {
+	window.addEventListener("load",inicio);
+}else if (document.attachEvent) {
 	window.attachEvent("onload",inicio);
+}
 
 function inicio(){
+	/*Registrarse*/
 	var BtnMostrarR=document.getElementById("registrarse");
+	var BtnRegistrar=document.getElementById("registrar");
 	var BtnOcultarR=document.getElementById("ocultarR");
+	/*Inicio sesion*/
 	var BtnMostrarE=document.getElementById("iniciarsesion");
+	var BtnIniciar=document.getElementById("iniciar");
 	var BtnOcultarE=document.getElementById("ocultarE");
+	
 	var BtnDefi=document.getElementById("addDefinicion");
 	var BtnLocal=document.getElementById("addLocalidad");
 	var BtnCoche=document.getElementById("addCoche");
 	var BtnComun=document.getElementById("comunidades");
 	if (document.addEventListener) {
-		BtnMostrarR.addEventListener("click",registrar);
-		BtnOcultarR.addEventListener("click",ocultarR);
-		BtnMostrarE.addEventListener("click",iniciosesion);
-		BtnOcultarE.addEventListener("click",ocultarE);
+		BtnMostrarR.addEventListener("click",menuRegistrar);
+		BtnRegistrar.addEventListener("click",registrar);
+		BtnOcultarR.addEventListener("click",ocultarMenuR);
+		BtnMostrarE.addEventListener("click",menuIniciosesion);
+		BtnIniciar.addEventListener("click",iniciosesion);
+		BtnOcultarE.addEventListener("click",ocultarMenuE);
 		BtnDefi.addEventListener("click",addDefin);
 		BtnLocal.addEventListener("click",addLocal);
 		BtnCoche.addEventListener("click",addCoches);
 		BtnComun.addEventListener("change",mostrarComunidad);
 	} else if (document.attachEvent) {
-		BtnMostrarR.attachEvent("onclick",registrar);
-		BtnOcultarR.attachEvent("onclick",ocultarR);
-		BtnMostrarE.attachEvent("onclick",iniciosesion);
-		BtnOcultarE.attachEvent("onclick",ocultarE);
+		BtnMostrarR.attachEvent("onclick",menuRegistrar);
+		BtnRegistrar.attachEvent("onclick",registrar);
+		BtnOcultarR.attachEvent("onclick",ocultarMenuR);
+		BtnMostrarE.attachEvent("onclick",menuIniciosesion);
+		BtnIniciar.attachEvent("onclick",iniciosesion);
+		BtnOcultarE.attachEvent("onclick",ocultarMenuE);
 		BtnDefi.attachEvent("onclick",addDefin);
 		BtnLocal.attachEvent("onclick",addLocal);
 		BtnCoche.attachEvent("onclick",addCoches);
@@ -67,7 +77,7 @@ function inicio(){
 		boton.addEventListener("click",addLocal)
 	}else if (document.attachEvent) {
 		boton.attachEvent("onclick",addLocal);
-	}
+	}/*
 	//Añadir Coche
 	var boton=document.getElementById("addCoche");
 	if (document.addEventListener) {

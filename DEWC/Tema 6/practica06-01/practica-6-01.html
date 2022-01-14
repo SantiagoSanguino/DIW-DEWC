@@ -82,9 +82,9 @@
 									<legend>Nombre de Localidades</legend><br />
 									<label for="localidad">Localidad </label>
 										<input type="text" name="localidad" id="localidad" /> <br />
-										<input type="button" value="Añadir Localidad" name="addLocalidad" id="addLocalidad"/><br /><br />
+										<input type="button" name="addLocalidad" id="addLocalidad" value="Añadir Localidad"/><br /><br />
 										<legend> Lista de Localidades ordenadas</legend>
-									<ol id="localidades">
+									<ol id="localidades" name="localidades" value="localidades">
 									</ol>
 									<br /><br /><br />
 								</div>
@@ -124,18 +124,20 @@
 										<option value="Canarias">Canarias</option>
 									</select>
 									<label for="provincia">Provincias </label>
-									
 									<select id="provincia" name="provincia" class="menu">
 										
 									</select><br /><br />
 										<legend> Comentarios sobre la comunidad autónoma</legend>
+									<div id="comentario" name="comentario" class="comentario">
+										
+									</div>
 									<br />
 									<br /><br />
 									<br /><br />
 								</div>
 								<div class="left">
 									<legend>Mensajes</legend><br />
-									<div id="mensaje">
+									<div id="mensaje" name="mensaje">
 										
 									</div>
 									<input type="button" name="addMensaje" id="addMensaje" value="Añadir Mensaje" /><!-- disabled="true" --> <br /><br />

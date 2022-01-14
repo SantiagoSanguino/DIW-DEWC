@@ -1,16 +1,66 @@
 
-function registrar(){
+function menuRegistrar(){
 	document.getElementById("regist").setAttribute("open",true);
 }
-function ocultarR(){
+function registrar(){
+	let usuario=document.getElementById("user1").value;
+	let password=document.getElementById("pass1").value;
+	let userSize=usuario.length;
+	let passSize=password.length;
+	let esvalido=true;
+	if((userSize>7&&userSize<13)||(passSize>7&&passSize<15)) {
+		let letras="áéíóúñ";
+		for(let i=0;i<userSize;i++) {
+			let caracter=usuario.charAt(i).toLowerCase();
+			if(i<3) {
+				if((caracter<"a"||caracter>"z")&&!caracter.includes(letras)) {
+					esvalido=false;
+				}
+			}else if((caracter<"0"||caracter>"9")&&(caracter<"a"||caracter>"z")&&!caracter.includes(letras)) {
+				esvalido=false;
+			}
+		}
+		for(let i=0;i<passSize;i++) {
+			let caracter=password[i].charAt(i).toLowerCase();
+			if(i<2) {
+				if((caracter<"a"||caracter>"z")&&!caracter.includes(letras)) {
+					esvalido=false;
+				}
+			}else if(i==passSize-1){
+				if((caracter<"0"||caracter>"9")&&(caracter<"a"||caracter>"z")&&!caracter.includes(letras)) {
+					esvalido=false;
+				}
+			}else if(i>=2&&i<passSize-1) {
+				let letrasSub="áéíóúñ_";
+				if((caracter<"0"||caracter>"9")&&(caracter<"a"||caracter>"z")&&!caracter.includes(letrasSub)) {
+					esvalido=false;
+				}
+			}
+		}
+	}else {
+		esvalido=false;
+	}
+	if(esvalido){
+		document.cookie= usuario+"="+password+";max-age="+(24*60*60)+"; path=/";
+		document.getElementById("regist").removeAttribute("open");
+	}
+}
+function ocultarMenuR(){
 	document.getElementById("regist").removeAttribute("open");
 }
-function iniciosesion(){
+function menuIniciosesion(){
 	document.getElementById("entrar").setAttribute("open",true);
 }
-function ocultarE(){
+function iniciosesion(){
+	let usuario=document.getElementById("user2").value;
+	let password=document.getElementById("pass2").value;
+	
 	document.getElementById("entrar").removeAttribute("open");
 }
+function ocultarMenuE(){
+	document.getElementById("entrar").removeAttribute("open");
+}
+
 function comprobarUser(nombre) {
 	let sizenombre=nombre.length;
 	let esuser=true;
@@ -80,11 +130,11 @@ function addLocal() {
 				eslocal=false;
 				let newli=document.createElement("li");
 				let textolocal=document.createTextNode(vlocal);
-				newli.appendChild(textolocal);
+				newli.append(textolocal);
 				lin.before(newli);
 			}
 			cont++;
-		}
+		}/**/
 		if(eslocal) {
 			let newli=document.createElement("li");
 			let textolocal=document.createTextNode(vlocal);
@@ -158,21 +208,32 @@ function addCoches() {
 	}
 }
 
-function addLocal() {
-	let provincias=document.getElementById("comunidades").value;
-	
-	if(provincias.length==0) {
-		return false;
-	}else {
-		document.getElementById("provincia").value()="Prueba1";
-		let newoption=document.createElement("option");
-		let textprovi=document.createTextNode("Prueba provincia");
-		newmarca.append(textmarca);
-		newmodelo.append(textmodelo);
-		newprecio.append(textprecio);
-		newtr.append(newmarca);
-		newtr.append(newmodelo);
-		newtr.append(newprecio);
-		padre.append(newtr);
+function mostrarComunidad() {
+	/*Borrar el contenido anterior*/
+	let provincias=document.getElementById("provincia");
+	let comentarios=document.getElementById("comentario");
+	while(provincias.firstChild) {
+		provincias.removeChild(provincias.firstChild);
 	}
+	comentarios.removeChild(comentarios.firstChild);
+	
+	let comunidades=document.getElementById("comunidades");
+	let comunidad=comunidades.selectedIndex;
+	let asturias=["Oviedo"];
+	let andalucia=["Jaen","Cordoba","Sevilla","Granada"];
+	let galicia=["A coruña","Ourense","Pontevedra"];
+	let arrayProvin=[asturias,andalucia,galicia];
+	let mensajeProvin=["con 1 provincia situada al norte de España","con 9 provincias situada al sur de la peninsula","con 4 provincias","...","...","...","...","..."];
+	
+	let newtext=document.createElement("p");
+	let mensprovi=document.createTextNode(comunidades.value+" "+mensajeProvin[comunidad]);
+	newtext.appendChild(mensprovi);
+	comentario.appendChild(newtext);
+	for(let i=0;i<arrayProvin[comunidad].length;i++) {
+		let newoption=document.createElement("option");
+		let textprovi=document.createTextNode(arrayProvin[comunidad][i]);
+		newoption.appendChild(textprovi);
+		provincia.appendChild(newoption);
+	}
+	
 }
