@@ -65,7 +65,9 @@
 										<input type="text" name="modelo" id="modelo" /> <br />
 									<label for="precio">Precio </label>
 										<input type="text" name="precio" id="precio" /> <br />
-										<input type="button" name="addCoche" id="addCoche" value="Añadir Coche"/><br /><br />
+										<input type="button" name="addCoche" id="addCoche" value="Añadir Coche"/>
+										<input type="button" name="delCoche" id="delCoche" value="Quitar Coche"/>
+										<br /><br />
 									<table id="coche">
 										<thead>
 											<tr>
@@ -105,11 +107,20 @@
 									<br /><br />
 								</div>
 								<div class="left">
-									<legend>Mensajes</legend><br />
-									<div id="mensaje" name="mensaje">
-										
-									</div>
-									<input type="button" name="addMensaje" id="addMensaje" value="Añadir Mensaje" /><!-- disabled="true" --> <br /><br />
+								<!--
+									<legend>Color</legend>
+									<br />
+									<p> Color pares
+										<input type="number" name="number1" id="number1" value="0" size="4px" min="0" max="255" />
+										<input type="number" name="number2" id="number2" value="0" size="4px" min="0" max="255" />
+										<input type="number" name="number3" id="number3" value="0" size="4px" min="0" max="255" />
+									<br />
+									Color impares
+										<input type="number" name="number4" id="number4" value="0" size="4px" min="0" max="255" />
+										<input type="number" name="number5" id="number5" value="0" size="4px" min="0" max="255" />
+										<input type="number" name="number6" id="number6" value="0" size="4px" min="0" max="255" />
+									</p><!-- -->
+									<input type="button" name="applyColor" id="applyColor" value="Aplicar color" /><br /><br />
 								</div>
 							</div>
 							<br />

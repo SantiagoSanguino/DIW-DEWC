@@ -1,4 +1,5 @@
 
+/* Añadir definicion */
 function addDefin(evento) {
 	let vpalabra=$("#palabra").val();
 	let vconcepto=$("#concepto").val();
@@ -6,163 +7,190 @@ function addDefin(evento) {
 		let alldt=$("#definicion>dt");
 		let espalabra=true;		
 		let cont=0;
-		console.log(event.data);
+		
 		while (espalabra&&cont < $(alldt).length) {
 			if ($(alldt).eq(cont).text()==vpalabra) {
 				$(alldt).eq(cont).after("<dd>"+vconcepto+"</dd>");
 				espalabra=false;
+				console.log("Concepto añadido");
 			}
 			cont++;
 		}
 		if (espalabra) {
 			$("#definicion").append("<dt>"+vpalabra+"</dt>");
 			$("#definicion").append("<dd>"+vconcepto+"</dd>");
+			console.log("Definicion añadida");
 		}else {
 			evento.preventDefault();
 		}
 	}
 }
-
+/* Borrar definicion */
 function delDefin() {
 	let palabra=$("#palabra").val();
-	if($(vpalabra)!="") {
-		let alldt=$("#definicion>dt");
+	if($(palabra)!="") {
+		let alldt=$("#definicion").children();
 		let esencontrado=false;		
 		let cont=0;
+		
 		while (!esencontrado&&cont < $(alldt).length) {
-			if ($(alldt).eq(cont).text()==$(palabra)) {
-				/*Quito la definicion*/	
-				let dt=document.createElement("dt");
-				while($(palabra).firstChild) {
-					$(palabra).removeChild($(palabra).firstChild);
+			if ($(alldt).eq(cont).text()==palabra) {
+				/*Quito la definicion*/
+				let resto=$(alldt).eq(cont).nextUntil("dt");
+				for(let i=$(alldt).length-1;i>=0;i--) {
+					$(resto).eq(i).remove();
 				}
+				$(alldt).eq(cont).remove();
 				esencontrado=true;
+				console.log("Definicion borrada");
 			}
 			cont++;
 		}
 	}
 }
-/*
+/* Añadir localidad */
 function addLocal() {
-	let padre=document.getElementById("localidades");
-	let vlocal=document.getElementById("localidad").value.trim();
-	if(vlocal!="") {
-		let allli=padre.getElementsByTagName("li");
+	let localidades=$("#localidades").val();
+	let vlocal=$("#localidad").val().trim();
+	if($(vlocal)!="") {
+		let allli=$("#localidades").children();
 		let eslocal=true;		
 		let cont=0;
-		while (eslocal&&cont < allli.length) {
-			let lin=allli.item(cont);
-			if (lin.textContent==vlocal) {
+		while (eslocal&&cont < $(allli).length) {
+			let lin=$(allli).eq(cont).text();
+			if ($(allli).eq(cont).text()==$("#localidad").val().trim()) {
 				eslocal=false;
-			}else if (lin.textContent>vlocal) {
+			}else if ($(allli).eq(cont).text()<$("#localidad").val().trim()) {
 				eslocal=false;
-				let newli=document.createElement("li");
-				let textolocal=document.createTextNode(vlocal);
-				newli.append(textolocal);
-				lin.before(newli);
+				$(allli).eq(cont).after("<li>"+vlocal+"</li>");
 			}
 			cont++;
-		}/**/	/*
+		}/**/	
 		if(eslocal) {
-			let newli=document.createElement("li");
-			let textolocal=document.createTextNode(vlocal);
-			newli.appendChild(textolocal);
-			padre.appendChild(newli);
+			$("#localidades").append("<li>"+vlocal+"</li>");
 		}
 	}
 }
-function addCoches() {
-	let padre=document.querySelector("#coche>tbody");
-	let vmarca=document.getElementById("marca").value.trim();
-	let vmodelo=document.getElementById("modelo").value.trim();
-	let vprecio=document.getElementById("precio").value.trim();
-	if(vmarca!=""&&vmodelo!=""&&vprecio!="") {
-		let line=padre.getElementsByTagName("tr");
+/* Añadir coche */
+function addCoche() {
+	let coche=$("#coche>tbody");
+	let vmarca=$("#marca").val();
+	let vmodelo=$("#modelo").val();
+	let vprecio=$("#precio").val();
+	if($(vmarca)!=""&&$(vmodelo)!="") {
+		let line=$(coche).children("tr");
 		let escoche=true;		
 		let cont=0;
-		while (escoche&&cont < line.length) {
-			let lin=line.item(cont);
-			let celdas=lin.getElementsByTagName("td");
-			if (celdas.item(0).textContent==vmarca&&celdas.item(1).textContent==vmodelo) {
+		
+		while (escoche&&cont < $(line).length) {
+			let celda=$(line).eq(cont).children("td");
+			console.log(celda.eq(0).text()+" "+celda.eq(1).text());
+			if ( $(celda).eq(0).text()==vmarca&& $(celda).eq(1).text()==vmodelo) {
 				escoche=false;
-				celdas.item(2).textContent=vprecio;
-			}else if(celdas.item(0).textContent==vmarca&&celdas.item(1).textContent<vmodelo) {
+				$(celda).eq(2).text(vprecio);
+				console.log("Esta repetido marca y modelo");
+				
+			}else if($(celda).eq(0).text()>vmarca) {
 				escoche=false;
-				let newtr=document.createElement("tr");
-				let newmarca=document.createElement("td");
-				let newprecio=document.createElement("td");
-				let textmarca=document.createTextNode(vmarca);
-				let textprecio=document.createTextNode(vprecio);
-				newmarca.append(textmarca);
-				newmodelo.append(textmodelo);
-				newprecio.append(textprecio);
-				newtr.append(newmarca);
-				newtr.append(newmodelo);
-				newtr.append(newprecio);
-				lin.before(newtr);
-			}else if (celdas.item(0).textContent<vmarca) {
+				$(line).eq(cont).before("<tr><td>"+vmarca+"</td><td>"+vmodelo+"</td><td>"+vprecio+"</td></tr>");
+				console.log("No esta repetido marca");
+				
+			}else if($(celda).eq(0).text()==vmarca&& $(celda).eq(1).text()>vmodelo) {
 				escoche=false;
-				let newtr=document.createElement("tr");
-				let newmarca=document.createElement("td");
-				let newprecio=document.createElement("td");
-				let textmarca=document.createTextNode(vmarca);
-				let textprecio=document.createTextNode(vprecio);
-				newmarca.append(textmarca);
-				newmodelo.append(textmodelo);
-				newprecio.append(textprecio);
-				newtr.append(newmarca);
-				newtr.append(newmodelo);
-				newtr.append(newprecio);
-				lin.before(newtr);
+				$(line).eq(cont).before("<tr><td>"+vmarca+"</td><td>"+vmodelo+"</td><td>"+vprecio+"</td></tr>");
+				console.log("Esta repetido solo marca after");
+				
 			}
 			cont++;
 		}
 		if(escoche) {
-			let newtr=document.createElement("tr");
-			let newmarca=document.createElement("td");
-			let newmodelo=document.createElement("td");
-			let newprecio=document.createElement("td");
-			let textmarca=document.createTextNode(vmarca);
-			let textmodelo=document.createTextNode(vmodelo);
-			let textprecio=document.createTextNode(vprecio);
-			newmarca.append(textmarca);
-			newmodelo.append(textmodelo);
-			newprecio.append(textprecio);
-			newtr.append(newmarca);
-			newtr.append(newmodelo);
-			newtr.append(newprecio);
-			padre.append(newtr);
+			$(coche).append("<tr><td>"+vmarca+"</td><td>"+vmodelo+"</td><td>"+vprecio+"</td></tr>");
+			console.log("Añadir coche");
+		}
+	}
+}
+/* Borrar coche */
+function delCoche() {
+	let coche=$("#coche>tbody");
+	let vmarca=$("#marca").val();
+	let vmodelo=$("#modelo").val();
+	if($(vmarca)!=""&&$(vmodelo)!="") {
+		let line=$(coche).children("tr");
+		let esborrado=false;		
+		let cont=0;
+		console.log("Iniciar borrado");
+		while (!esborrado&&cont < $(line).length) {
+			let celda=$(line).eq(cont).children("td");
+			
+			if ( $(celda).eq(0).text()==vmarca&& $(celda).eq(1).text()==vmodelo) {
+				$(line).eq(cont).remove();
+				console.log("Se ha borrado con exito");
+				esborrado=true;
+			}
+			cont++;
+		}
+		if(!esborrado) {
+			alert("No se encontro nada para borrar");
 		}
 	}
 }
 
 function mostrarComunidad() {
-	/*Borrar el contenido anterior*/	/*
-	let provincias=document.getElementById("provincia");
-	let comentarios=document.getElementById("comentario");
-	while(provincias.firstChild) {
-		provincias.removeChild(provincias.firstChild);
+	/*Borrar el contenido anterior*/
+	let provincias=$("#provincia");
+	let comentarios=$("#comentario");
+	let prov=$("#provincia>option");
+	for(let i=$(prov).length-1;i>=0;i--) {
+		$(prov).eq(i).remove();
+		console.log("Borrados los comentarios anteriores");
 	}
-	comentarios.removeChild(comentarios.firstChild);
+	$(comentarios).text("");
+	let comunidad=$("#comunidades").val();
 	
-	let comunidades=document.getElementById("comunidades");
-	let comunidad=comunidades.selectedIndex;
+	
+	/* Hacerlo con arrays asociativos */
+	
 	let asturias=["Oviedo"];
 	let andalucia=["Jaen","Cordoba","Sevilla","Granada"];
 	let galicia=["A coruña","Ourense","Pontevedra"];
 	let arrayProvin=[asturias,andalucia,galicia];
 	let mensajeProvin=["con 1 provincia situada al norte de España","con 9 provincias situada al sur de la peninsula","con 4 provincias","...","...","...","...","..."];
-	
-	let newtext=document.createElement("p");
-	let mensprovi=document.createTextNode(comunidades.value+" "+mensajeProvin[comunidad]);
-	newtext.appendChild(mensprovi);
-	comentario.appendChild(newtext);
-	for(let i=0;i<arrayProvin[comunidad].length;i++) {
-		let newoption=document.createElement("option");
-		let textprovi=document.createTextNode(arrayProvin[comunidad][i]);
-		newoption.appendChild(textprovi);
-		provincia.appendChild(newoption);
+	console.debug(mensajeProvin);
+	let position;
+	for(let i=0;i<$(arrayProvin).length;i++) {
+		if($(arrayProvin)[i]==comunidad) {
+			position=$(i);
+		}
 	}
-	
+	console.log(position);
+	$(comentarios).eq(0).text(comunidad+" "+mensajeProvin[position]);
+	let cont=-1;
+	for(let i=$(arrayProvin[position]).length;0<i;i--) {
+		$(provincias).eq(i).after("<option>"+arrayProvin[position][i]+"</option>");
+		console.log(arrayProvin[position][i]);
+	} /* */
+	console.log(comunidad);
 }
-*/
+
+function applyColor() {
+	let coches=$("#coche>tbody");
+	let par="rgb("+getRgbNumber()+","+getRgbNumber()+","+getRgbNumber()+")";
+	let impar="rgb("+getRgbNumber()+","+getRgbNumber()+","+getRgbNumber()+")";
+	let line=$(coches).children("tr");
+	for(let i=0;i<$(line).length;i++) {
+		if(i%2==0){
+			$(line).eq(i).css("backgroundColor",par);
+		}else {
+			$(line).eq(i).css("backgroundColor",impar);
+		}
+	}
+	//alert("rgb("+getRgbNumber()+","+getRgbNumber()+","+getRgbNumber()+")");
+	console.log(par+" - "+impar);
+}
+
+function getRgbNumber() {
+	/* Un numero entre 0 y 255 */
+	let min=0;
+	let max=255;
+	return Math.floor(Math.random()* max - min);
+}
